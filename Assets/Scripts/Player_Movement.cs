@@ -11,7 +11,6 @@ public class Player_Movement : MonoBehaviour
     bool isMovingRight = false;
     //public AudioSource collisionAudio;
     //public AudioSource collectAudio;
-    //public Ads_Manager ads;
 
     void Start()
     {
@@ -76,12 +75,11 @@ public class Player_Movement : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Cars")
+        if(collision.gameObject.tag == "Car")
         {
             Time.timeScale = 0;
             //gameOverPanel.SetActive(true);
             //collisionAudio.Play();
-            //ads.PlayAd();
         }
         
         if (collision.gameObject.tag == "Coin")
