@@ -5,8 +5,8 @@ public class Player_Movement : MonoBehaviour
     public Transform transform;
     public float speed = 5f;
     public float rotationSpeed = 5f;
-    //public Score_Manager scoreValue;
-    //public GameObject gameOverPanel;
+    public Score_Manager scoreValue;
+    public GameObject gameOverPanel;
     bool isMovingLeft = false;
     bool isMovingRight = false;
     //public AudioSource collisionAudio;
@@ -14,7 +14,7 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
-        //gameOverPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
         Time.timeScale = 1;
     }
     
@@ -78,13 +78,13 @@ public class Player_Movement : MonoBehaviour
         if(collision.gameObject.tag == "Car")
         {
             Time.timeScale = 0;
-            //gameOverPanel.SetActive(true);
+            gameOverPanel.SetActive(true);
             //collisionAudio.Play();
         }
         
         if (collision.gameObject.tag == "Coin")
         {
-            //scoreValue.score += 10;
+            scoreValue.score += 10;
             Destroy(collision.gameObject);
             //collectAudio.Play();
         }

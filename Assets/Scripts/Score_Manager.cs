@@ -9,8 +9,8 @@ public class Score_Manager : MonoBehaviour
     public int highScore;
     public static int lastScore = 0;
     public TextMeshProUGUI scoreText;
-    public TextMeshPro highScoreText;
-    public TextMeshPro lastScoreText;
+    public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI lastScoreText;
     
     void Start()
     {
