@@ -10,12 +10,12 @@ public class Game_Controller : MonoBehaviour
     private int highScore;
     public Score_Manager score_manager;
     public GameObject gamePausePanel;
-    public GameObject gamePauseButton;
+    private bool isPaused;
     
     void Start()
     {
         gamePausePanel.SetActive(false);
-        gamePauseButton.SetActive(true);
+        isPaused = false;
     }
     
     void Update()
@@ -24,6 +24,18 @@ public class Game_Controller : MonoBehaviour
         score = score_manager.score;
         highSoreText.text = "Highscore: " + highScore.ToString();
         scoreText.text = "Your Score: " + score.ToString();
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
 
     public void Restart()
@@ -33,20 +45,20 @@ public class Game_Controller : MonoBehaviour
     
     public void PauseGame()
     {
+        isPaused = true;
         Time.timeScale = 0;
         gamePausePanel.SetActive(true);
-        gamePauseButton.SetActive(false);
     }
     
     public void ResumeGame()
     {
+        isPaused = false;
         Time.timeScale = 1;
         gamePausePanel.SetActive(false);
-        gamePauseButton.SetActive(true);
     }
 
     public void Main_Menu()
     {
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 }

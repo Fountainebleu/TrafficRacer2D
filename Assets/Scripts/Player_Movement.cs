@@ -16,6 +16,7 @@ public class Player_Movement : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         Time.timeScale = 1;
+        
     }
     
     void Update()

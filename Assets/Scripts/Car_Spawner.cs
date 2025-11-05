@@ -1,4 +1,5 @@
 using System.Collections;
+using DefaultNamespace;
 using UnityEngine;
 
 public class Car_Spawner : MonoBehaviour
@@ -26,7 +27,7 @@ public class Car_Spawner : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(GameSettings.carSpawnInterval);
             Cars();
         }
     }
