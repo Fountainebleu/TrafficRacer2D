@@ -22,8 +22,8 @@ public class Game_Controller : MonoBehaviour
     {
         highScore = PlayerPrefs.GetInt("high_score");
         score = score_manager.score;
-        highSoreText.text = "Highscore: " + highScore.ToString();
-        scoreText.text = "Your Score: " + score.ToString();
+        highSoreText.text = "Лучший счет: " + highScore.ToString();
+        scoreText.text = "Счет: " + score.ToString();
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -16,13 +16,13 @@ public class Score_Manager : MonoBehaviour
     {
         StartCoroutine(Score());
         highScore = PlayerPrefs.GetInt("high_score", 0);
-        highScoreText.text = "HighScore: " + highScore.ToString();
-        lastScoreText.text = "LastScore: " + lastScore.ToString();
+        highScoreText.text = "Лучший счет: " + highScore.ToString();
+        lastScoreText.text = "Последний счет: " + lastScore.ToString();
     }
     
     void Update()
     {
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Счет: " + score.ToString();
         if(score>highScore)
         {
             highScore = score;
