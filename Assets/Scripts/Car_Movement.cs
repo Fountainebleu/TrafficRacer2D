@@ -12,10 +12,10 @@ public class Car_Movement : MonoBehaviour
     
     void Update()
     {
-        transform.position -= new Vector3(transform.position.x, speed * Time.deltaTime, transform.position.z);
-        //if(transform.position.y <= -6)
-        //{
-        //    Destroy(gameObject);
-        //}
+        transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
+        if(transform.position.y <= -7)
+        {
+            Destroy(gameObject);
+        }
     }
 }
