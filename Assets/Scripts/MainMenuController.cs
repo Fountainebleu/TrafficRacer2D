@@ -53,7 +53,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGameHard()
     {
-        GameSettings.carSpawnInterval = 0.5f;
+        GameSettings.carSpawnInterval = 0.56f;
         GameSettings.currentDifficulty = "hard";
         LoadGameScene();
     }
