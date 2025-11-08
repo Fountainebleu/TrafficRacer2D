@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,18 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         ShowMainMenu();
+        AudioManager.Instance.PlayMenuMusic();
+    }
+
+    private void Update()
+    {
+        if (!mainMenuPanel.activeSelf && difficultyPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+            ShowMainMenu();
+    }
+
+    public void OnVolumeSliderChanged(float value)
+    {
+        AudioManager.Instance.SetVolume(value);
     }
 
     public void ShowMainMenu()
@@ -26,19 +39,22 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGameEasy()
     {
-        GameSettings.carSpawnInterval = 1.0f; // реже — легче
+        GameSettings.carSpawnInterval = 1f;
+        GameSettings.currentDifficulty = "easy";
         LoadGameScene();
     }
 
     public void StartGameMedium()
     {
-        GameSettings.carSpawnInterval = 0.5f; // как у тебя сейчас
+        GameSettings.carSpawnInterval = 0.75f;
+        GameSettings.currentDifficulty = "medium";
         LoadGameScene();
     }
 
     public void StartGameHard()
     {
-        GameSettings.carSpawnInterval = 0.25f; // чаще — сложнее
+        GameSettings.carSpawnInterval = 0.5f;
+        GameSettings.currentDifficulty = "hard";
         LoadGameScene();
     }
 

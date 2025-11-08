@@ -16,11 +16,14 @@ public class Game_Controller : MonoBehaviour
     {
         gamePausePanel.SetActive(false);
         isPaused = false;
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlayGameMusic();
     }
     
     void Update()
     {
-        highScore = PlayerPrefs.GetInt("high_score");
+        var highScoreKey = "high_score_" + DefaultNamespace.GameSettings.currentDifficulty;
+        highScore = PlayerPrefs.GetInt(highScoreKey);
         score = score_manager.score;
         highSoreText.text = "Лучший счет: " + highScore.ToString();
         scoreText.text = "Счет: " + score.ToString();

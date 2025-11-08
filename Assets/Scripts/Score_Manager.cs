@@ -15,7 +15,11 @@ public class Score_Manager : MonoBehaviour
     void Start()
     {
         StartCoroutine(Score());
-        highScore = PlayerPrefs.GetInt("high_score", 0);
+        var highScoreKey = "high_score_" + DefaultNamespace.GameSettings.currentDifficulty;
+        var lastScoreKey = "last_score_" + DefaultNamespace.GameSettings.currentDifficulty;
+
+        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
+        lastScore = PlayerPrefs.GetInt(lastScoreKey, 0);
         highScoreText.text = "Лучший счет: " + highScore.ToString();
         lastScoreText.text = "Последний счет: " + lastScore.ToString();
     }
@@ -23,10 +27,13 @@ public class Score_Manager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Счет: " + score.ToString();
+        string lastScoreKey = "last_score_" + DefaultNamespace.GameSettings.currentDifficulty;
+        PlayerPrefs.SetInt(lastScoreKey, score);
         if(score>highScore)
         {
             highScore = score;
-            PlayerPrefs.SetInt("high_score", highScore);
+            var highScoreKey = "high_score_" + DefaultNamespace.GameSettings.currentDifficulty;
+            PlayerPrefs.SetInt(highScoreKey, highScore);
         }
     }
 

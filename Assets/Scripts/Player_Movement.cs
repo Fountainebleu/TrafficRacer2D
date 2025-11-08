@@ -9,8 +9,6 @@ public class Player_Movement : MonoBehaviour
     public GameObject gameOverPanel;
     bool isMovingLeft = false;
     bool isMovingRight = false;
-    //public AudioSource collisionAudio;
-    //public AudioSource collectAudio;
 
     void Start()
     {
@@ -24,12 +22,12 @@ public class Player_Movement : MonoBehaviour
         Movement();
         Clamp();
         
-        if(isMovingLeft || Input.GetKey(KeyCode.LeftArrow))
+        if(isMovingLeft || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             MoveLeft();
         }
 
-        if(isMovingRight || Input.GetKey(KeyCode.RightArrow))
+        if(isMovingRight || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             MoveRight();
         }
@@ -40,20 +38,20 @@ public class Player_Movement : MonoBehaviour
 
         if (transform.rotation.z != 90)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 90), 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), 10f * Time.deltaTime);
         }
     }
 
     void MoveLeft()
     {
         transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 137), rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 49), rotationSpeed * Time.deltaTime);
     }
 
     void MoveRight()
     {
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 43), rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -49), rotationSpeed * Time.deltaTime);
     }
 
     public void MovingLeft(bool i)
@@ -80,14 +78,15 @@ public class Player_Movement : MonoBehaviour
         {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
-            //collisionAudio.Play();
+            AudioManager.Instance.PlayCrashSound();
+            AudioManager.Instance.StopMusic();
         }
         
         if (collision.gameObject.tag == "Coin")
         {
             scoreValue.score += 10;
             Destroy(collision.gameObject);
-            //collectAudio.Play();
+            AudioManager.Instance.PlayCoinSound();
         }
 
     }
